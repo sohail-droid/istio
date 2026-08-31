@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will You Marry Me? 💕</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Background Animation -->
+    <div class="hearts-container"></div>
+
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">💕 Our Love Story 💕</div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="proposal-title">I have something to ask you...</h1>
+            <p class="hero-subtitle">Three words, eight letters, say it and I'm yours</p>
+            <button class="btn btn-primary" onclick="scrollToProposal()">Continue</button>
+        </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section class="about-us" id="about">
+        <div class="container">
+            <h2 class="section-title">Our Journey Together</h2>
+            <div class="story-grid">
+                <div class="story-card">
+                    <div class="story-icon">💑</div>
+                    <h3>The Day We Met</h3>
+                    <p>From the moment I saw you, I knew my life would never be the same. You've brought joy and light into every single day.</p>
+                </div>
+                <div class="story-card">
+                    <div class="story-icon">🌟</div>
+                    <h3>All The Moments</h3>
+                    <p>Every laugh, every adventure, every quiet moment with you has been nothing short of magical. You make everything better.</p>
+                </div>
+                <div class="story-card">
+                    <div class="story-icon">💑</div>
+                    <h3>Growing Together</h3>
+                    <p>With you, I've learned what it means to love unconditionally. You are my best friend, my soulmate, my home.</p>
+                </div>
+                <div class="story-card">
+                    <div class="story-icon">🎊</div>
+                    <h3>Forever Starts Now</h3>
+                    <p>I want to build a lifetime of memories with you. Let's write the greatest love story ever told, together.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reasons Section -->
+    <section class="reasons" id="reasons">
+        <div class="container">
+            <h2 class="section-title">Why I Love You</h2>
+            <div class="reasons-grid">
+                <div class="reason-item">
+                    <span class="reason-number">1</span>
+                    <p>Your smile brightens even my darkest days</p>
+                </div>
+                <div class="reason-item">
+                    <span class="reason-number">2</span>
+                    <p>You make me want to be the best version of myself</p>
+                </div>
+                <div class="reason-item">
+                    <span class="reason-number">3</span>
+                    <p>Your kindness and compassion inspire me daily</p>
+                </div>
+                <div class="reason-item">
+                    <span class="reason-number">4</span>
+                    <p>You laugh at my silly jokes (even the bad ones)</p>
+                </div>
+                <div class="reason-item">
+                    <span class="reason-number">5</span>
+                    <p>Life is an adventure when I'm with you</p>
+                </div>
+                <div class="reason-item">
+                    <span class="reason-number">6</span>
+                    <p>You've taught me what true love means</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- The Big Question Section -->
+    <section class="proposal" id="proposal">
+        <div class="proposal-content">
+            <div class="ring-animation">💍</div>
+            <h2 class="proposal-question">Will you marry me?</h2>
+            <p class="proposal-subtitle">Let's spend forever together</p>
+            <div class="proposal-buttons">
+                <button class="btn btn-yes" onclick="handleYes()">Yes! 💕</button>
+                <button class="btn btn-no" id="noBtn" onclick="handleNo()">No</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Success Message -->
+    <section class="success-section" id="successSection" style="display: none;">
+        <div class="success-content">
+            <div class="celebration-animation">🎉</div>
+            <h2>YES! I'm the happiest person alive!</h2>
+            <p>You've just made me the luckiest person in the world. Let's build our forever together! 💕</p>
+            <div class="fireworks-container"></div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>Made with all my love for the person I want to spend forever with 💕</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-v1
+  namespace: dating
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frontend
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: frontend
+        version: v1
+    spec:
+      containers:
+        - name: frontend-v1
+          image: imastha8/istio-frontend:v1
+          imagePullPolicy: IfNotPresent   # use Never only if you want to force local image
+          ports:
+            - containerPort: 8000

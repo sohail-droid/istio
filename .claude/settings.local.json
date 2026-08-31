@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mkdir -p /home/vijayasharma/Desktop/backup/dating-app)",
+      "Bash(mkdir -p backend frontend)"
+    ]
+  }
+}

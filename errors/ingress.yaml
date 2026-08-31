@@ -1,0 +1,64 @@
+# What Ingress Actually Does ??
+# Ingress (networking.k8s.io/v1) is the old Kubernetes API for exposing HTTP(S) services.
+# It supports: Host-based routing (e.g. dating.local, shop.local, blog.local).
+# Path-based routing (e.g. /api vs /static).
+# TLS termination (using a Kubernetes Secret).
+
+# That’s basically it — host, path, TLS, and one backend Service per rule.
+
+# Why Teams Move Away From Ingress
+# Spec frozen: No new features are added. It’s stuck with host/path/TLS only.
+
+# Advanced routing: Needs controller-specific annotations (nginx.ingress.kubernetes.io/...). If you switch controllers (NGINX → Traefik → Istio), those annotations break.
+
+# No traffic split: Can’t do 90% v1 + 10% v2. Only one Service backend per path.
+
+# No header/cookie match: Can’t route based on headers like x-user: qa.
+
+# Edge-only: Ingress only handles north-south traffic (outside → inside). Istio also manages east-west (pod-to-pod) with retries, mTLS, policies.
+
+# Istio Gateway + VirtualService: Istio’s native way to handle ingress. More powerful, supports canary, retries, header matches, mTLS, etc.
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: shared-ingress
+  namespace: dating
+spec:
+  tls:
+    - hosts:
+        - dating.local
+        - shop.local
+        - blog.local
+      secretName: shared-cert
+  rules:
+    - host: dating.local
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: frontend
+                port:
+                  number: 80
+    - host: shop.local
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: shop-svc
+                port:
+                  number: 80
+    - host: blog.local
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: blog-svc
+                port:
+                  number: 80
