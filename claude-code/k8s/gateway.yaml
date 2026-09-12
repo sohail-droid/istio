@@ -1,3 +1,6 @@
+# Your Gateway YAML resource is just a piece of configuration — a Kubernetes Custom Resource. 
+# It doesn't run anything by itself. It sits in etcd describing "here's how I want traffic to be handled."
+
 apiVersion: networking.istio.io/v1
 kind: Gateway
 metadata:

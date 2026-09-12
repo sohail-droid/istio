@@ -1,0 +1,22 @@
+apiVersion: networking.istio.io/v1
+kind: VirtualService
+metadata:
+  name: dating-virtualservice
+  namespace: dating
+spec:
+  hosts:
+  - "dating.local"    #must match what your Gateway declared, otherwise this VirtualService won't be considered for that traffic
+  gateways:
+  - dating-gateway
+  http:
+  - route:  #route traffic to the destination service
+    - destination:
+        host: frontend-service
+        port:
+          number: 80
+
+
+#1. weighted traffic splitting(can be used to test new features in production)
+#2. canary releases
+#3. blue/green deployments
+#4. A/B testing

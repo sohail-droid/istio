@@ -18,6 +18,6 @@ spec:
       containers:
         - name: frontend-v2
           image: imastha8/istio-frontend:v2
-          imagePullPolicy: IfNotPresent   # use Never only if you don’t want to pull from Docker Hub
+          imagePullPolicy: Always   # use Never only if you don’t want to pull from Docker Hub
           ports:
             - containerPort: 80

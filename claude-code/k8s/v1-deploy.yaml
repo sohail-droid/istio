@@ -18,6 +18,6 @@ spec:
       containers:
         - name: frontend-v1
           image: imastha8/istio-frontend:v1
-          imagePullPolicy: IfNotPresent   # use Never only if you want to force local image
+          imagePullPolicy: Always   # use Never only if you want to force local image
           ports:
             - containerPort: 8000
