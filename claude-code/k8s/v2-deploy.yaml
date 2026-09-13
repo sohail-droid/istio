@@ -20,4 +20,5 @@ spec:
           image: imastha8/istio-frontend:v2
           imagePullPolicy: Always   # use Never only if you don’t want to pull from Docker Hub
           ports:
-            - containerPort: 80
+            - name: http-frontend
+              containerPort: 80

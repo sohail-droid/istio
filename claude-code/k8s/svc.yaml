@@ -8,5 +8,6 @@ spec:
     app: frontend
 #    version: v2    #this is the problem
   ports:
-    - port: 80  #svc listening on 
+    - name: http-frontend
+      port: 80  #svc listening on 
       targetPort: 8000   #container running on
