@@ -21,4 +21,4 @@ spec:
           imagePullPolicy: Always   # use Never only if you don’t want to pull from Docker Hub
           ports:
             - name: http-front-v2
-              containerPort: 80   #container listening on port 80
+              containerPort: 8000   #container listening on port 80

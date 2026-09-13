@@ -6,8 +6,7 @@ metadata:
 spec:
   selector:
     app: frontend
-#    version: v2    #this is the problem
+    version: v1    
   ports:
-    - name: http-front-v2
-      port: 80  #svc listening on 
-      # targetPort: 80   #container running on
+    - port: 80  #svc listening on 
+      targetPort: http-front-v1   # 80 or "http-front-v2" if you prefer named port
