@@ -11,7 +11,7 @@ COPY index.html script.js styles.css ./
 RUN npm install -g serve
 
 # Expose the port your server will listen on
-EXPOSE 80
+EXPOSE 8000
 
 # Serve the static files directly
 CMD ["serve", "-s", ".", "-l", "8000"]
