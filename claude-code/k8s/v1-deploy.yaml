@@ -20,5 +20,5 @@ spec:
           image: imastha8/istio-frontend:v1
           imagePullPolicy: Always   # use Never only if you want to force local image
           ports:
-            - name: http-frontend
-              containerPort: 8000
+            - name: http-front-v1
+              containerPort: 8000   # container litening on por 8000
