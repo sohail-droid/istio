@@ -8,5 +8,6 @@ spec:
     app: frontend
     version: v1    
   ports:
-    - port: 80  #svc listening on 
-      targetPort: http-front-v1   # 80 or "http-front-v2" if you prefer named port
+    - name: http-front-v1   # Istio-friendly name
+      port: 80  #svc listening on 
+      targetPort: http-front-v1   # 80 or "http-front-v2" if you prefer named port  matches the named port in Deployment
