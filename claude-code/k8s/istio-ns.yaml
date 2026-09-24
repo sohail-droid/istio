@@ -1,6 +1,18 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: dating
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"v1","kind":"Namespace","metadata":{"annotations":{},"creationTimestamp":"2026-09-13T16:25:22Z","labels":{"istio-injection":"enabled","istio.io/rev":"latest","kubernetes.io/metadata.name":"dating"},"name":"dating","resourceVersion":"67144","uid":"777dff15-7fa9-4305-ae52-b7b02a22260c"},"spec":{"finalizers":["kubernetes"]},"status":{"phase":"Active"}}
+  creationTimestamp: "2026-09-13T16:25:22Z"
   labels:
-    istio-injection: enabled
+    istio.io/rev: 1-31-0
+    kubernetes.io/metadata.name: dating
+  name: dating
+  resourceVersion: "67989"
+  uid: 777dff15-7fa9-4305-ae52-b7b02a22260c
+spec:
+  finalizers:
+  - kubernetes
+status:
+  phase: Active
