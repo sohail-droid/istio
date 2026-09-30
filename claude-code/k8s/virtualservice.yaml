@@ -6,6 +6,7 @@ metadata:
 spec:
   hosts:
   - "dating.local"        # Listens for outside traffic requesting this domain
+  - "comrade-daybreak-rentable.ngrok-free.dev"   # add this
   gateways:
   - dating-gateway        # Hooks into your Istio Ingress Gateway
   http:
