@@ -15,4 +15,6 @@ spec:
       name: http
       protocol: HTTP
     hosts:
-    - "dating.local"
+    - dating.local
+    - comrade-daybreak-rentable.ngrok-free.dev   # add this
+    # or just use "*"
