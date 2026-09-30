@@ -12,13 +12,13 @@ spec:
   - route:
     - destination:
         host: frontend-service.dating.svc.cluster.local
-        subset: v1        # Points to the subset defined in your DestinationRule
+        subset: my-subset-v1        # Points to the subset defined in your DestinationRule
         port:
           number: 80
       weight: 90          # 90% of external traffic
     - destination:
         host: frontend-service.dating.svc.cluster.local
-        subset: v2
+        subset: my-subset-v2
         port:
           number: 80
       weight: 10          # 10% of external traffic
