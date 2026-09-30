@@ -5,15 +5,23 @@ metadata:
   namespace: dating
 spec:
   hosts:
-  - "dating.local"    #must match what your Gateway declared, otherwise this VirtualService won't be considered for that traffic
+  - "dating.local"        # Listens for outside traffic requesting this domain
   gateways:
-  - dating-gateway
+  - dating-gateway        # Hooks into your Istio Ingress Gateway
   http:
-  - route:  #route traffic to the destination service
+  - route:
     - destination:
-        host: frontend-service
+        host: frontend-service.dating.svc.cluster.local
+        subset: v1        # Points to the subset defined in your DestinationRule
         port:
           number: 80
+      weight: 90          # 90% of external traffic
+    - destination:
+        host: frontend-service.dating.svc.cluster.local
+        subset: v2
+        port:
+          number: 80
+      weight: 10          # 10% of external traffic
 
 
 #1. weighted traffic splitting(can be used to test new features in production)
