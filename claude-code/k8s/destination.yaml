@@ -1,7 +1,7 @@
 apiVersion: networking.istio.io/v1
 kind: DestinationRule
 metadata:
-  name: dating-DestinationRule  
+  name: dating-destination-rule
   namespace: dating
 spec:
   host: frontend-service.dating.svc.cluster.local
