@@ -67,6 +67,7 @@
 # * is one of the most powerful features in Istio. It allows you to send 100% of live user traffic 
 # * to your stable v1 application, while secretly duplicating that exact same traffic 
 # * to v2 in the background.
+# *  Sends all traffic to v1, but duplicates requests to v2 silently (users only see v1 responses).
 # ******************************************************************************
 
 apiVersion: networking.istio.io/v1
