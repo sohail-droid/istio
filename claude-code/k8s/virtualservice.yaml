@@ -1,34 +1,35 @@
-# apiVersion: networking.istio.io/v1
-# kind: VirtualService
-# metadata:
-#   name: dating-virtualservice
-#   namespace: dating
-# spec:
-#   hosts:
-#   - "dating.local"        # Listens for outside traffic requesting this domain
-#   - "comrade-daybreak-rentable.ngrok-free.dev"   
-#   gateways:
-#   - dating-gateway        # Hooks into your Istio Ingress Gateway
-#   http:
-#   - route:
-#     - destination:
-#         host: frontend-service.dating.svc.cluster.local
-#         subset: my-subset-v1        # Points to the subset defined in your DestinationRule
-#         port:
-#           number: 80
-#       weight: 90          # 90% of external traffic
-#     - destination:
-#         host: frontend-service.dating.svc.cluster.local
-#         subset: my-subset-v2
-#         port:
-#           number: 80
-#       weight: 10          # 10% of external traffic
+# // apiVersion: networking.istio.io/v1
+# // kind: VirtualService
+# // metadata:
+# //   name: dating-virtualservice
+# //   namespace: dating
+# // spec:
+# //   hosts:
+# //   - "dating.local"        # Listens for outside traffic requesting this domain
+# //   - "comrade-daybreak-rentable.ngrok-free.dev"
+# //   gateways:
+# //   - dating-gateway        # Hooks into your Istio Ingress Gateway
+# //   http:
+# //   - route:
+# //     - destination:
+# //         host: frontend-service.dating.svc.cluster.local
+# //         subset: my-subset-v1        # Points to the subset defined in your DestinationRule
+# //         port:
+# //           number: 80
+# //       weight: 90          # 90% of external traffic
+# //     - destination:
+# //         host: frontend-service.dating.svc.cluster.local
+# //         subset: my-subset-v2
+# //         port:
+# //           number: 80
+# //       weight: 10          # 10% of external traffic
 
 
-### 1. Header-Based Routing (A/B Testing)
-### Instead of a random percentage, this configuration sends standard users to v1, 
-### but routes anyone with a specific HTTP header (user: beta-tester) to v2.
-
+# ******************************************************************************
+# * NEW TOPIC: 1. Header-Based Routing (A/B Testing)
+# * Instead of a random percentage, this configuration sends standard users
+# * to v1, but routes anyone with a specific HTTP header (user: beta-tester) to v2.
+# ******************************************************************************
 
 apiVersion: networking.istio.io/v1
 kind: VirtualService
@@ -41,7 +42,7 @@ spec:
   gateways:
   - dating-gateway
   http:
-  # Rule 1: If the header 'user' exactly matches 'beta-tester', send to v2
+  # * Rule 1: If the header 'user' exactly matches 'beta-tester', send to v2
   - match:
     - headers:
         user:
@@ -50,7 +51,7 @@ spec:
     - destination:
         host: frontend-service.dating.svc.cluster.local
         subset: my-subset-v2
-  # Rule 2: Default fallback for everyone else, send to v1
+  # * Rule 2: Default fallback for everyone else, send to v1
   - route:
     - destination:
         host: frontend-service.dating.svc.cluster.local
