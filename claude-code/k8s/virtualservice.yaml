@@ -39,6 +39,7 @@
 # spec:
 #   hosts:
 #   - "dating.local"
+#   - "comrade-daybreak-rentable.ngrok-free.dev"
 #   gateways:
 #   - dating-gateway
 #   http:
@@ -76,6 +77,7 @@ metadata:
 spec:
   hosts:
   - "dating.local"
+  - "comrade-daybreak-rentable.ngrok-free.dev"
   gateways:
   - dating-gateway
   http:
