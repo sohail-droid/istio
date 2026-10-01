@@ -31,6 +31,43 @@
 # * to v1, but routes anyone with a specific HTTP header (user: beta-tester) to v2.
 # ******************************************************************************
 
+# apiVersion: networking.istio.io/v1
+# kind: VirtualService
+# metadata:
+#   name: dating-virtualservice
+#   namespace: dating
+# spec:
+#   hosts:
+#   - "dating.local"
+#   gateways:
+#   - dating-gateway
+#   http:
+#   # * Rule 1: If the header 'user' exactly matches 'beta-tester', send to v2
+#   - match:
+#     - headers:
+#         user:
+#           exact: beta-tester
+#     route:
+#     - destination:
+#         host: frontend-service.dating.svc.cluster.local
+#         subset: my-subset-v2
+#   # * Rule 2: Default fallback for everyone else, send to v1
+#   - route:
+#     - destination:
+#         host: frontend-service.dating.svc.cluster.local
+#         subset: my-subset-v1
+
+
+
+
+
+# ******************************************************************************
+# * NEW TOPIC: 2. Traffic Mirroring (also known as Shadowing) 
+# * is one of the most powerful features in Istio. It allows you to send 100% of live user traffic 
+# * to your stable v1 application, while secretly duplicating that exact same traffic 
+# * to v2 in the background.
+# ******************************************************************************
+
 apiVersion: networking.istio.io/v1
 kind: VirtualService
 metadata:
@@ -42,17 +79,12 @@ spec:
   gateways:
   - dating-gateway
   http:
-  # * Rule 1: If the header 'user' exactly matches 'beta-tester', send to v2
-  - match:
-    - headers:
-        user:
-          exact: beta-tester
-    route:
-    - destination:
-        host: frontend-service.dating.svc.cluster.local
-        subset: my-subset-v2
-  # * Rule 2: Default fallback for everyone else, send to v1
   - route:
     - destination:
         host: frontend-service.dating.svc.cluster.local
         subset: my-subset-v1
+    mirror:
+      host: frontend-service.dating.svc.cluster.local
+      subset: my-subset-v2
+    mirrorPercentage:
+      value: 100.0
