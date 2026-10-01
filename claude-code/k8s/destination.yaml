@@ -1,18 +1,14 @@
 apiVersion: networking.istio.io/v1
 kind: DestinationRule
 metadata:
-  name: dating-destination-rule
+  name: dating-destinationrule
   namespace: dating
 spec:
   host: frontend-service.dating.svc.cluster.local
-  subsets: 
-  - name: my-subset-v1  
+  subsets:
+  - name: my-subset-v1
     labels:
-      version: v1   # Matches the label on your v1 Pods #used to define the traffic policy for the service subset
-  - name: my-subset-v2   
+      version: v1
+  - name: my-subset-v2
     labels:
-      version: v2   # Matches the label on your v2 Pods #used to define the traffic policy for the service subset    
-
-
-
-
+      version: v2
