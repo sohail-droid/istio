@@ -63,7 +63,7 @@
 
 
 # ******************************************************************************
-# * NEW TOPIC: 2. Traffic Mirroring (also known as Shadowing) 
+# * NEW TOPIC: 2. Traffic Mirroring (also known as Shadowing)     not working in kiali ui
 # * is one of the most powerful features in Istio. It allows you to send 100% of live user traffic 
 # * to your stable v1 application, while secretly duplicating that exact same traffic 
 # * to v2 in the background.
@@ -91,4 +91,3 @@ spec:
       subset: my-subset-v2
     mirrorPercentage:
       value: 100.0
-

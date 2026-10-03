@@ -1,3 +1,27 @@
+# apiVersion: networking.istio.io/v1
+# kind: DestinationRule
+# metadata:
+#   name: dating-destinationrule
+#   namespace: dating
+# spec:
+#   host: frontend-service.dating.svc.cluster.local
+#   subsets:
+#   - name: my-subset-v1
+#     labels:
+#       version: v1
+#   - name: my-subset-v2
+#     labels:
+#       version: v2
+
+
+
+# In a microservices architecture, if an application starts choking under a massive traffic spike or failing due to a database timeout, 
+# you do not want Envoy to keep pounding it with requests until the entire node crashes.
+# A Circuit Breaker detects the strain and instantly cuts off the traffic. 
+# It returns a fast 503 Service Unavailable to the excess requests, allowing the struggling pod time to recover.
+
+# Because Circuit Breaking happens at the destination (the pod itself), this is configured entirely inside the DestinationRule.
+
 apiVersion: networking.istio.io/v1
 kind: DestinationRule
 metadata:
@@ -12,3 +36,16 @@ spec:
   - name: my-subset-v2
     labels:
       version: v2
+
+  trafficPolicy:      # HOW should Istio communicate with those pods?
+    connectionPool:   # Controls how Envoy manages connections and requests to the backend.
+      tcp:
+        maxConnections: 1          # Envoy can have at most 1 TCP connection to the backend.
+      http:
+        http1MaxPendingRequests: 1 # Maximum number of requests that can WAIT in the queue when Envoy cannot immediately send them to the backend.
+        maxRequestsPerConnection: 1  # Maximum number of requests that one connection can handle before Envoy stops reusing that connection.
+    outlierDetection:              # If one backend endpoint keeps failing, temporarily stop sending traffic to it Istio can temporarily  REMOVE that endpoint from load balancing.
+      consecutive5xxErrors: 2      # If the same backend endpoint produces 2 consecutive HTTP 5xx responses, Istio can eject(But Envoy can temporarily stop choosing that endpoint.) that endpoint.
+      interval: 5s
+      baseEjectionTime: 30s
+      maxEjectionPercent: 100    # If more than 100% of the endpoints are ejected, Istio will stop sending traffic to any of them i mean all pods
